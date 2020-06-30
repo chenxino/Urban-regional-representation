@@ -1,0 +1,107 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>毕设 &amp; 展示</title>
+
+    <!-- meta -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- css -->
+    <link rel="stylesheet" href="{% static 'blog/css/bootstrap.min.css' %}">
+{#    <link rel="stylesheet" href="{% static 'blog/css/ionicons.min.css' %}">#}
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="{% static 'blog/css/pace.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/css/custom.css' %}">
+    {% block css %}
+    {% endblock css %}
+    <!-- js -->
+    <script src="{% static 'blog/js/jquery-2.1.3.min.js' %}"></script>
+    <script src="{% static 'blog/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'blog/js/pace.min.js' %}"></script>
+    <script src="{% static 'blog/js/modernizr.custom.js' %}"></script>
+</head>
+
+<body>
+<div class="container">
+    <header id="site-header">
+        <div class="row">
+            <div class="col-md-4 col-sm-5 col-xs-8">
+                <div class="logo">
+                    <h1><a href="/"><b>毕设</b> &amp; 展示</a></h1>
+                </div>
+            </div><!-- col-md-4 -->
+            <div class="col-md-8 col-sm-7 col-xs-4">
+                <nav class="main-nav" role="navigation">
+                    <div class="navbar-header">
+                        <button type="button" id="trigger-overlay" class="navbar-toggle">
+                            <span class="ion-navicon"></span>
+                        </button>
+                    </div>
+
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="cl-effect-11"><a href="/map" data-hover="网络构建">网络构建</a></li>
+                            <li class="cl-effect-11"><a href="/train_chart" data-hover="训练过程">训练过程 </a></li>
+                            <li class="cl-effect-11"><a href="/pictures" data-hover="区域划分"> 区域划分</a></li>
+                            <li class="cl-effect-11"><a href="/A3Graph" data-hover="网络表征">网络表征</a></li>
+                            {% if request.session.is_login %}
+                                <li class="cl-effect-11"><a href="/login" data-hover={{ request.session.user_name }}>{{ request.session.user_name }}</a></li>
+                                <li class="cl-effect-11"><a href="/login/logout" data-hover="登出">登出</a></li>
+                            {% else %}
+                                <li class="cl-effect-11"><a href="/login/login" data-hover="登录">登录</a></li>
+                                <li class="cl-effect-11"><a href="/login/register" data-hover="注册">注册</a></li>
+                            {% endif %}
+                        </ul>
+                    </div><!-- /.navbar-collapse -->
+                </nav>
+            </div><!-- col-md-8 -->
+        </div>
+    </header>
+</div>
+{#<div class="copyrights">Collect from <a href="http://www.cssmoban.com/">网页模板</a></div>#}
+{#<div class="copyrights">Modified by <a href="http://zmrenwu.com/">追梦人物的博客</a></div>#}
+
+<div class="content-body">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-10">
+                {% block main %}
+                {% endblock main %}
+            </main>
+            <aside class="col-md-2">
+                {% block toc %}
+                {% endblock toc %}
+            </aside>
+        </div>
+    </div>
+</div>
+		<footer id="site-footer">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<p class="copyright"> 2020 毕业设计</p>
+					</div>
+				</div>
+			</div>
+		</footer>
+
+<!-- Mobile Menu -->
+<div class="overlay overlay-hugeinc">
+    <button type="button" class="overlay-close"><span class="ion-ios-close-empty"></span></button>
+    <nav>
+        <ul>
+            <li><a href="/">网络构建</a></li>
+            <li><a href="/pictures">区域划分</a></li>
+            <li><a href="/train_chart">训练过程</a></li>
+            <li><a href="/A3Graph">网络表征</a></li>
+        </ul>
+    </nav>
+</div>
+
+<script src="{% static 'blog/js/script.js' %}"></script>
+{% block js %}
+{% endblock js %}
+</body>
+</html>

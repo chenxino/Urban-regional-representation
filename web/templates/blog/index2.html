@@ -1,0 +1,230 @@
+{% extends 'base1.html' %}
+{% load static %}
+{% block main %}
+    <h1 class="entry-title">网络构建</h1>
+    <h3>主要完成城市地图数据，兴趣点数据，GPS数据处理，具体情况如下</h3>
+    <div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<div class="row">
+				<div class="col-md-4">
+					<div class="thumbnail">
+						<img alt="300x200" src="{% static 'blog/img/map1.png' %}" />
+						<div class="caption">
+							<h3>
+								基于道路区域划分
+							</h3>
+							<p>
+								获取城市区域道路，去除噪声区域，通过城市道路，对城市自然的完成划分。
+							</p><br>
+                            <div class="read-more cl-effect-14">
+                                <a href="/map" class="more-link">查看细节 <span class="meta-nav">→</span></a>
+                            </div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="thumbnail">
+						<img alt="300x200" src="{% static 'blog/img/poi1.png' %}" />
+						<div class="caption">
+							<h3>
+								poi点数据可视化
+							</h3>
+							<p>
+								将各类poi点数据投射到地图中，将结果显示出来。
+							</p><br><br>
+                            <div class="read-more cl-effect-14">
+                                <a href="/poi" class="more-link">查看细节 <span class="meta-nav">→</span></a>
+                            </div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="thumbnail">
+						<img alt="300x200" src="{% static 'blog/img/taxi1.png' %}"  />
+						<div class="caption">
+							<h3>
+								区域联系可视化
+							</h3>
+							<p>
+								将各区域之间taxi流量数据投射到地图中，将结果显示出来。将各区域之间距离数据投射到地图中，将结果显示出来。
+							</p>
+                            <div class="read-more cl-effect-14">
+                                <a href="/taxi" class="more-link">查看细节 <span class="meta-nav">→</span></a>
+                            </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+{##}
+{##}
+{#    {% for post in post_list %}#}
+{#    <article class="post post-{{ post.pk }}">#}
+{#        <header class="entry-header">#}
+{#            <h1 class="entry-title">#}
+{#                <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>#}
+{#            </h1>#}
+{#            <div class="entry-meta">#}
+{#                <div class="entry-meta">#}
+{#                    <span class="post-category"><a href="#">{{ post.category.name }}</a></span>#}
+{#                    <span class="post-date"><a href="#"><time class="entry-date"#}
+{#                                                                datetime="{{ post.created_time }}">{{ post.created_time }}</time></a></span>#}
+{#                    <span class="post-author"><a href="#">{{ post.author }}</a></span>#}
+{#                    <span class="comments-link"><a href="#">4 评论</a></span>#}
+{#                    <span class="views-count"><a href="#">588 阅读</a></span>#}
+{#                </div>#}
+{#            </div>#}
+{#        </header>#}
+{#        <div class="entry-content clearfix">#}
+{#            <p>{{ post.excerpt }}</p>#}
+{#            <div class="read-more cl-effect-14">#}
+{#                <a href="{{ post.get_absolute_url }}" class="more-link">继续阅读 <span class="meta-nav">→</span></a>#}
+{#            </div>#}
+{#        </div>#}
+{#    </article>#}
+{#    {% empty %}#}
+{#        <div class="no-post">暂时还没有发布的文章！</div>#}
+{#    {% endfor %}#}
+{##}
+{##}
+{##}
+{#    <article class="post post1">#}
+{#        <header class="entry-header">#}
+{#            <h1 class="entry-title">#}
+{#                <a href="/map">基于道路区域划分</a>#}
+{#            </h1>#}
+{#        </header>#}
+{#        <div class="entry-content clearfix">#}
+{#            <p>获取城市区域道路，通过城市道路，对城市自然的完成划分</p>#}
+{#            <div class="read-more cl-effect-14">#}
+{#                <a href="/map" class="more-link">具体情况 <span class="meta-nav">→</span></a>#}
+{#            </div>#}
+{#        </div>#}
+{##}
+{#    </article>#}
+{#        <article class="post post1">#}
+{#        <header class="entry-header">#}
+{#            <h1 class="entry-title">#}
+{#                <a href="/poi">poi点数据可视化</a>#}
+{#            </h1>#}
+{#        </header>#}
+{#        <div class="entry-content clearfix">#}
+{#            <p>将各类poi点数据投射到地图中，将结果显示出来</p>#}
+{#            <div class="read-more cl-effect-14">#}
+{#                <a href="/poi" class="more-link">继续阅读 <span class="meta-nav">→</span></a>#}
+{#            </div>#}
+{#        </div>#}
+{#    </article>#}
+{##}
+{#    </article>#}
+{#        <article class="post post1">#}
+{#        <header class="entry-header">#}
+{#            <h1 class="entry-title">#}
+{#                <a href="/taxi">区域联系可视化</a>#}
+{#            </h1>#}
+{#        </header>#}
+{#        <div class="entry-content clearfix">#}
+{#            <p>将各区域之间taxi流量数据投射到地图中，将结果显示出来。</p>#}
+{#            <p>将各区域之间距离数据投射到地图中，将结果显示出来。</p>#}
+{#            <div class="read-more cl-effect-14">#}
+{#                <a href="/taxi" class="more-link">继续阅读 <span class="meta-nav">→</span></a>#}
+{#            </div>#}
+{#        </div>#}
+{#    </article>#}
+{##}
+
+
+
+
+
+{% endblock main %}
+{##}
+{#{% block toc %}#}
+{#    <div class="widget widget-recent-posts">#}
+{#        <h3 class="widget-title">最新文章</h3>#}
+{#        <ul>#}
+{#            <li>#}
+{#                <a href="#">Django 博客开发入门教程：前言</a>#}
+{#            </li>#}
+{#            <li>#}
+{#                <a href="#">Django 博客使用 Markdown 自动生成文章目录</a>#}
+{#            </li>#}
+{#            <li>#}
+{#                <a href="#">部署 Django 博客</a>#}
+{#            </li>#}
+{#        </ul>#}
+{#    </div>#}
+{#    <div class="widget widget-archives">#}
+{#        <h3 class="widget-title">归档</h3>#}
+{#        <ul>#}
+{#            <li>#}
+{#                <a href="#">2017 年 5 月</a>#}
+{#            </li>#}
+{#            <li>#}
+{#                <a href="#">2017 年 4 月</a>#}
+{#            </li>#}
+{#            <li>#}
+{#                <a href="#">2017 年 3 月</a>#}
+{#            </li>#}
+{#        </ul>#}
+{#    </div>#}
+{##}
+{#    <div class="widget widget-category">#}
+{#        <h3 class="widget-title">分类</h3>#}
+{#        <ul>#}
+{#            <li>#}
+{#                <a href="#">Django 博客教程 <span class="post-count">(13)</span></a>#}
+{#            </li>#}
+{#            <li>#}
+{#                <a href="#">Python 教程 <span class="post-count">(11)</span></a>#}
+{#            </li>#}
+{#            <li>#}
+{#                <a href="#">Django 用户认证 <span class="post-count">(8)</span></a>#}
+{#            </li>#}
+{#        </ul>#}
+{#    </div>#}
+{##}
+{#    <div class="widget widget-tag-cloud">#}
+{#        <h3 class="widget-title">标签云</h3>#}
+{#        <ul>#}
+{#            <li>#}
+{#                <a href="#">Django</a>#}
+{#            </li>#}
+{#            <li>#}
+{#                <a href="#">Python</a>#}
+{#            </li>#}
+{#            <li>#}
+{#                <a href="#">Java</a>#}
+{#            </li>#}
+{#            <li>#}
+{#                <a href="#">笔记</a>#}
+{#            </li>#}
+{#            <li>#}
+{#                <a href="#">文档</a>#}
+{#            </li>#}
+{#            <li>#}
+{#                <a href="#">AngularJS</a>#}
+{#            </li>#}
+{#            <li>#}
+{#                <a href="#">CSS</a>#}
+{#            </li>#}
+{#            <li>#}
+{#                <a href="#">JavaScript</a>#}
+{#            </li>#}
+{#            <li>#}
+{#                <a href="#">Snippet</a>#}
+{#            </li>#}
+{#            <li>#}
+{#                <a href="#">jQuery</a>#}
+{#            </li>#}
+{#        </ul>#}
+{#    </div>#}
+{#    <div class="rss">#}
+{#        <a href=""><span class="ion-social-rss-outline"></span> RSS 订阅</a>#}
+{#    </div>#}
+{#{% endblock toc %}#}

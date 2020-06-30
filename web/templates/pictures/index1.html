@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% block css %}
+
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" media="all" rel="stylesheet" type="text/css"/>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+{% endblock css %}
+
+{% block main %}
+{% load static %}
+    <h1 class="mt-5">区域划分</h1><br>
+        <p class="lead">上传需要进行区域划分的图片，在后台完成城市主要街道图的膨胀,细化,区域划分等操作，然后根据我们给出的提取码在<a href="{% url 'pictures:extraction' 0%}" data-hover="此处"> 此处 </a>下载划分后图片。
+        <p class="lead">第一步也是唯一一步，你需要选择1张需要划分的照片。</p>
+        <div>
+        <div>
+            <form action="{% url 'pictures:upload' %}" method="post" enctype="multipart/form-data">
+                {%csrf_token %}
+                <div id="accordion">
+                    <div class="card">
+                        <!--1-9主体-->
+                        <div>
+                            <div class="card-body">
+
+                                <div class="media">
+                                    <img class="mr-3" src="{% static 'pictures/img/hint/01.png' %}" alt="缩略图" id="pre_01" width="30%">
+                                    <div class="media-body">
+                                        <h5 class="mt-0">第1张照片</h5>
+                                        <input type="button" value="浏览 …" class="btn btn-secondary btn-lg" onclick="$('#id_img_01').click();">
+                                        <input type="file" class="file" name="img_01" accept="image/*" required="" id="id_img_01" onchange="previewFile(this,'01')" data-show-preview="false" style="display: none">
+                                    </div>
+                                </div><br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <p class="lead">上传需要一些时间，请耐心等待响应。</p>
+                <input type="submit" name="submit" id="submit" value='提交' class="btn btn-primary">
+            </form>
+        </div>
+        </div>
+
+{% endblock main %}
+
+{% block toc %}
+    <div class="widget widget-content">
+        <h3 class="widget-title">主要操作</h3>
+        <ul>
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'pictures:upload' %}">创建<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'pictures:extraction' 0%}">提取</a>
+            </li>
+        </ul>
+    </div>
+{% endblock toc %}
+
+{% block js %}
+<script>
+function previewFile(fileObj,id) {
+    var file = fileObj.files[0];
+    var pre_id = 'pre_'+ id;
+    var preview = document.getElementById(pre_id);
+    var reader = new FileReader();
+    if (file) {
+        reader.readAsDataURL(file);
+    } else {
+        preview.src = "";
+    }
+    reader.onloadend = function () {
+        preview.src = reader.result;
+    }
+}
+</script>
+{% endblock js%}
+
+

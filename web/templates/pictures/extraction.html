@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block css %}
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+
+{% endblock css %}
+
+{% block main %}
+            {% load static %}
+        <h1 class="mt-5">提取你的区域划分图片 · 输入提取码</h1><br>
+        <p class="lead">输入提取码，提取图片。</p>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" id="code" placeholder="提取码" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button" onclick="codeprocess()">提取</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock main %}
+
+{% block toc %}
+    <div class="widget widget-content">
+        <h3 class="widget-title">主要操作</h3>
+        <ul>
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'pictures:upload' %}">创建<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'pictures:extraction' 0%}">提取</a>
+            </li>
+        </ul>
+
+    </div>
+{% endblock toc %}
+
+{% block js %}
+    <script>
+        function codeprocess(){
+        var newhref = '../' + document.getElementById("code").value + '/';
+        window.location.href = newhref;
+    }
+    </script>
+{% endblock js %}

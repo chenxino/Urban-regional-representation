@@ -1,0 +1,139 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+    <script src="https://code.highcharts.com.cn/highcharts/highcharts.js"></script>
+    <script src="https://code.highcharts.com.cn/highcharts/modules/exporting.js"></script>
+    <script src="https://img.hcharts.cn/highcharts-plugins/highcharts-zh_CN.js"></script>
+    <script src="https://code.highcharts.com.cn/highcharts/themes/dark-unica.js"></script>
+{% endblock css %}
+
+{% block main %}
+    <article class="post post-1">
+        <header class="entry-header">
+            <h1 class="entry-title">
+                <a href="/map">A3Graph算法介绍</a>
+            </h1>
+        </header>
+        <div class="entry-content clearfix">
+            <h3>一、算法框架</h3>
+            <figure class="img-responsive-center">
+                <img class="img-responsive" src={% static 'train_chart/img/A3.png' %} alt="Developer">
+            </figure>
+            <h3>二、算法输入数据</h3>
+            <h4>1、数据一：区域属性矩阵</h4>
+            <p>由区域poi点数据处理获得 兴趣点数据如下<p>
+            <div id="container" style="min-width:400px;height:400px"></div>
+            <script>
+                var chart = Highcharts.chart('container',{
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: '某区域的poi点数量'
+                },
+                subtitle: {
+                    text: ' '
+                },
+                xAxis: {
+                    categories: ['教育学校','购物','基础设施','机构团体', '公司企业','建筑房产', '酒店宾馆','旅游服务', '美食','汽车', '生活服务','文化场馆','休闲娱乐','银行金融','运动健身','医疗保健服务'],
+                    crosshair: true
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: 'poi数量'
+                    }
+                },
+                tooltip: {
+                    // head + 每个 point + footer 拼接成完整的 table
+                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y:.1f} </b></td></tr>',
+                    footerFormat: '</table>',
+                    shared: true,
+                    useHTML: true
+                },
+                plotOptions: {
+                    column: {
+                        borderWidth: 0
+                    }
+                },
+                series: [{
+                    name: '某区域',
+                    data: [8, 150, 87, 12, 72, 57, 34, 0, 87, 17, 42, 3, 45, 3, 5, 16]
+                }, ]
+            });
+            </script>
+            <h4>2、数据二：区域间的相似度矩阵</h4>
+            <div>
+                    <p>有区域间距离和区域间交通流量融合获得 左图为交通流量图， 右图为距离联系图</p>
+                    <img  src='{% static 'train_chart/img/某点交通流量大于10图.png' %}' width="49%" >
+                    <img  src='{% static 'train_chart/img/某点距离小于300图.png' %}' width="49%" >
+            </div>
+            <h3>三、算法输出</h3>
+            <h4>算法输出为各个区域表征后的向量</h4>
+            <p>其中一个区域的表征向量如下图</p>
+            <div id="container1" style="min-width:400px;height:400px"></div>
+                <script>
+                    var chart = Highcharts.chart('container1',{
+                    chart: {
+                        type: 'column'
+                    },
+                    title: {
+                        text: '表征后的区域特征向量'
+                    },
+                    xAxis: {
+                        categories: ['特征一', '特征二', '特征三', '特征四', '特征五', '特征六']
+                    },
+                    series: [{
+                        name: '某一点',
+                        data: [4.289898681640625000e+01, -7.516213893890380859e+00, -4.537797927856445312e+00, -1.003506278991699219e+01, -8.702056884765625000e+00, -8.698312759399414062e+00]
+                    }, ]
+                });
+                </script>
+{#            <p>Django 是使用 Python 编写的一个开源 Web 框架，可以用来快速搭建一个高性能的网站。</p>#}
+{#            <blockquote><p>Django makes it easier to build better Web apps more quickly and with less#}
+{#                code.</p>#}
+{#                <p>Django 让你以更快的速度、更少的代码、更轻松的方式搭建更好的 Web 应用。</p>#}
+{#            </blockquote>#}
+{#            <p>本教程将带你使用 Django 快速开发属于自己的 Blog 网站。</p>#}
+{#            <h2>教程特点</h2>#}
+{#            <p>免费、中文、零基础，完整的项目，基于最新版 Django 1.10 和 Python 3.5。</p>#}
+{#            <p>带你从零开始一步步开发属于自己的博客网站，帮助你以最快的速度掌握 Django 开发的技巧。</p>#}
+{#            <h2>谁适合这个教程</h2>#}
+{#            <p><strong>本教程主要面向零基础的 Django 新人。</strong></p>#}
+{#            <p>只需要一点点 Python 语言的基础，就可以顺利阅读本教程。</p>#}
+{#            <p>如果你已有一定的 Django 开发经验，也能从本教程中学到更多的 Django 开发技巧。</p>#}
+{#            <h2>在线预览</h2>#}
+{#            <p>点击预览：<a href=''>Django Blog Demo</a></p>#}
+{#            <p><img src='' alt=''/></p>#}
+{#            <h2>资源列表</h2>#}
+{#            <p>项目完整代码托管在 GitHub：<a href=''>Django Blog Tutorial</a></p>#}
+{#            <p>博客前端模板托管在 GitHub：<a href=''>博客模板</a></p>#}
+{#            <h2>获取帮助</h2>#}
+{#            <p>在项目开发中遇到问题，即时获取帮助。</p>#}
+{#            <p>Django 学习小组 QQ 群，扫描下方二维码加入。</p>#}
+{#            <p><img src='' alt=''/></p>#}
+{#            <p>或者你也可以将问题的详细描述通过邮件发送至 <a href='mailto:djangostudyteam@163.com' target='_blank'>djangostudyteam@163.com</a>，一般会在#}
+{#                24 小时内答复。</p>#}
+        </div>
+    </article>
+{% endblock main %}
+
+{% block toc %}
+    <div class="widget widget-content">
+        <h3 class="widget-title">主要内容</h3>
+        <ul>
+            <li>
+                <a href="/train_chart">模型介绍</a>
+            </li>
+            <li>
+                <a href="/train_chart/train">训练过程</a>
+            </li>
+            <li>
+                <a href="/train_chart/vaild">结果验证</a>
+            </li>
+        </ul>
+    </div>
+
+{% endblock toc%}

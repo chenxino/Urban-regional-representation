@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block main %}
+    {% load static %}
+    <h1 class="mt-5">完成表征后的结果</h1><br>
+    <p class="lead">现在你可以保存下面的特征向量了。你的提取码是<code>{{code}}</code>，自文档创建起的七天之内，你可以在<a href="/A3Graph/download/{{ code }}/feature_A3.txt">此处</a>再次下载。</p>
+    <a href="/A3Graph/download/{{ code }}/feature_A3.txt">
+        <button class="btn bg-danger">下载</button>
+    </a>
+{% endblock main %}
+
+{% block toc %}
+    <div class="widget widget-content">
+        <h3 class="widget-title">主要操作</h3>
+        <ul>
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'A3Graph:list' %}">创建<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'A3Graph:extraction' 0%}">提取</a>
+            </li>
+        </ul>
+    </div>
+{% endblock toc %}
+
+
+

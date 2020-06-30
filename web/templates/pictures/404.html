@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block main %}
+    {% load static %}
+    <h1 class="mt-5">没找到，提取码错误</h1><br>
+
+{% endblock main %}
+
+{% block toc %}
+    <div class="widget widget-content">
+        <h3 class="widget-title">主要操作</h3>
+        <ul>
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'pictures:upload' %}">创建<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'pictures:extraction' 0%}">提取</a>
+            </li>
+        </ul>
+    </div>
+{% endblock toc %}
+
+
+

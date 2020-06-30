@@ -1,0 +1,118 @@
+{% load static %}
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="icon" href="../../../../favicon.ico">
+
+        <title>你的年·生成你的春节精选</title>
+
+        <link href="{% static 'pictures/css/bootstrap.min.css' %}" rel="stylesheet">
+        <link href="{% static 'pictures/sticky-footer-navbar.css' %}" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" media="all" rel="stylesheet" type="text/css"/>
+
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="../../static/exif.js"></script>
+    </head>
+<body>
+    <header>
+        <!-- Fixed navbar -->
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <a class="navbar-brand" href="{% url 'pictures:upload' %}">你的年</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{% url 'pictures:upload' %}">创建<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'pictures:extraction' 0%}">提取</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <!-- Begin page content -->
+    <main role="main" class="container">
+
+        <h1 class="mt-5">生成你的年</h1><br>
+        <p class="lead">上传你的新年精选照片，然后根据我们给出的提取码在<a href="{% url 'pictures:extraction' 0%}">此处</a>下载合成图片。
+        <p class="lead">第一步也是唯一一步，这看起来有些枯燥，你需要选择27张你钟意的照片。</p>
+        <p class="lead">对于非正方形照片，程序将为你选择居中位置的最大正方形。如果缩略图所显示的图片朝向与实际不符，不必担心，程序将自动修正它。</p>
+        <div>
+        <div>
+            <form action="{% url 'pictures:upload' %}" method="post" enctype="multipart/form-data">
+                {%csrf_token %}
+                <div id="accordion">
+                    <div class="card">
+                        <!--1-9主体-->
+                        <div>
+                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                                <div class="card-body">
+
+                                    <div class="media">
+                                        <img class="mr-3" src="{% static 'pictures/img/hint/01.png' %}" height="100" alt="缩略图" id="pre_01">
+                                        <div class="media-body">
+                                            <h5 class="mt-0">第01张照片</h5>
+                                            <input type="button" value="浏览 …" class="btn btn-secondary btn-lg" onclick="$('#id_img_01').click();">
+                                            <input type="file" class="file" name="img_01" accept="image/*" required="" id="id_img_01" onchange="previewFile(this,'01')" data-show-preview="false" style="display: none">
+                                        </div>
+                                    </div><br>
+
+                                    <div class="media">
+                                        <img class="mr-3" src="{% static 'pictures/img/hint/02.png' %}" height="100" alt="缩略图" id="pre_02">
+                                        <div class="media-body">
+                                            <h5 class="mt-0">第02张照片</h5>
+                                            <input type="button" value="浏览 …" class="btn btn-secondary btn-lg" onclick="$('#id_img_02').click();">
+                                            <input type="file" class="file" name="img_02" accept="image/*" required="" id="id_img_02" onchange="previewFile(this,'02')" data-show-preview="false" style="display: none">
+                                        </div>
+                                    </div><br>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div><br>
+                <p class="lead">上传需要一些时间，请耐心等待响应。</p>
+                <input type="submit" name="submit" id="submit" value='提交' class="btn btn-primary">
+            </form>
+        </div>
+
+        </div>
+        </main>
+    <br>
+    <footer class="footer">
+        <div class="container">
+          <span class="text-muted">
+              <span>© 2019 <a href="http://imztj.cn">ZhangTianjie</a></span>
+              <span> · <a href="https://github.com/ztjryg4/SpringFestivalHighlights">GitHub</a></span>
+          </span>
+        </div>
+    </footer>
+
+</body>
+</html>
+
+<script>
+function previewFile(fileObj,id) {
+    var file = fileObj.files[0];
+    var pre_id = 'pre_'+ id;
+    var preview = document.getElementById(pre_id);
+    var reader = new FileReader();
+    if (file) {
+        reader.readAsDataURL(file);
+    } else {
+        preview.src = "";
+    }
+    reader.onloadend = function () {
+        preview.src = reader.result;
+    }
+}
+</script>

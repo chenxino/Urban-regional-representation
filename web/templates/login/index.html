@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+
+{% block main %}
+
+    {% if request.session.is_login %}
+        <h1>你好,{{ request.session.user_name }}！欢迎回来！</h1><br>
+        <div class="panel-group" id="panel-118051">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                 <a class="panel-title" data-toggle="collapse" data-parent="#panel-118051" href="#panel-element-395518">图片处理历史</a>
+            </div>
+            <div id="panel-element-395518" class="panel-collapse collapse in">
+                <div class="panel-body">
+                    {% for raw in Raw_list %}
+                        <p class="lead">提取码：<code>{{ raw.code }}</code>
+                            <a href="/pictures/download/{{ raw.code }}/ccl.png">
+                                <button class="btn bg-danger">下载</button>
+                            </a><br>
+                        </p>
+
+                    {% empty %}
+                        <div class="no-post">还未处理过图片</div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                 <a class="panel-title" data-toggle="collapse" data-parent="#panel-118051" href="#panel-element-12571">网络处理历史</a>
+            </div>
+            <div id="panel-element-12571" class="panel-collapse collapse">
+                <div class="panel-body">
+                    {% for A3 in A3_list %}
+                        <p class="lead"><b>提取码</b>：<code>{{ A3.code }}</code>
+                            <a href="/A3Graph/download/{{ A3.code }}/feature_A3.txt">
+                                <button class="btn bg-danger">下载</button>
+                            </a>
+                        </p>
+
+                        <br>
+                    {% empty %}
+                        <div class="no-post">还未处理过网络</div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% else %}
+
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+                <div class="alert alert-success alert-dismissable">
+                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    <h4>
+                        提示!
+                    </h4> <strong>你尚未登录</strong> 只能访问公开内容！点击 <a href="/login/login" class="alert-link">此处</a> 跳转登录<br>
+                    或者点击右侧功能区，以游客模式工作
+                </div>
+            </div>
+        </div>
+        <h2>没有内容！</h2>
+    {% endif %}
+{% endblock main %}
+
+
+
+{##}
+{#    {% if request.session.is_login %}#}
+{#        <h1>你好,{{ request.session.user_name }}！欢迎回来！</h1><br>#}
+{#        <h3>图片处理历史</h3><br>#}
+{#        {% for raw in Raw_list %}#}
+{#            <p>提取码：{{ raw.code }}</p><br>#}
+{#        {% empty %}#}
+{#            <div class="no-post">还未处理过图片</div>#}
+{#        {% endfor %}#}
+{#        <h3>网络处理历史</h3>#}
+{#        {% for A3 in A3_list %}#}
+{#            <p><b>提取码</b>：{{ A3.code }}</p><br>#}
+{#        {% empty %}#}
+{#            <div class="no-post">还未处理过网络</div>#}
+{#        {% endfor %}#}
+{##}
+{#    {% else %}#}
+{#        <h1>你尚未登录，只能访问公开内容！</h1>#}
+{#        <h2><a href= "/login/login" style = "color: red"><b>此处</b> </a>跳转登录</h2>#}
+{#        <h2>或者点击左侧功能，以游客模式工作</h2>#}
+{#    {% endif %}#}
+{#{% endblock main %}#}
+
+{% block toc %}
+    <div class="widget widget-content">
+        <h3 class="widget-title">区域划分功能</h3>
+        <ul>
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'pictures:upload' %}">创建<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'pictures:extraction' 0%}">提取</a>
+            </li>
+        </ul>
+        <h3 class="widget-title">网路表征功能</h3>
+        <ul>
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'A3Graph:list' %}">创建<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'A3Graph:extraction' 0%}">提取</a>
+            </li>
+        </ul>
+
+    </div>
+{% endblock toc %}

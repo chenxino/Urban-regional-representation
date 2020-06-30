@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block main %}
+{% load static %}
+    <h1 class="mt-5">A3Grahp</h1><br>
+        <p class="lead">上传需要进行表征的网络，然后根据我们给出的提取码在<a href="{% url 'pictures:extraction' 0%}">此处</a>下载表征的文件。
+        <p class="lead">第一步也是唯一一步，你需要选择网络属性文件和网络结构信息文件上传。</p>
+        <div>
+        <div>
+            <form action="{% url 'A3Graph:list' %}" method="post" enctype="multipart/form-data">
+                {%csrf_token %}
+                {{ form.as_p }}
+                <button class="btn btn-primary " type="submit" value="submit">上传</button>
+{#                <div class="card-body">#}
+{#                    <div class="media">#}
+{#                        <div class="media-body">#}
+{#                            <h5 class="mt-0">feature文件</h5>#}
+{#                            <input type="button" value="浏览 …" class="btn btn-secondary btn-lg" onclick="$('#id_img_01').click();">#}
+{#                            <input type="file" class="file" name="feature"  id="id_img_01"  style="display: none">#}
+{##}
+{#                        </div>#}
+{#                    </div><br>#}
+{#                    <div class="media">#}
+{#                                <div class="media-body">#}
+{#                                    <h5 class="mt-0">structure文件</h5>#}
+{#                                    <input type="file" class="file" name="structure" >#}
+{#                                </div>#}
+{#                    </div><br>#}
+{#                </div>#}
+{##}
+{#                <div class="media">#}
+{#                    <p class="lead">上传需要一些时间，请耐心等待响应。</p>#}
+{#                    <input type="submit" name="submit" id="submit" value='提交' class="btn btn-primary">#}
+{#                </div>#}
+            </form>
+        </div>
+        </div>
+
+{% endblock main %}
+
+
+{% block toc %}
+    <div class="widget widget-content">
+        <h3 class="widget-title">主要操作</h3>
+        <ul>
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'A3Graph:list' %}">创建<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'A3Graph:extraction' 0%}">提取</a>
+            </li>
+        </ul>
+    </div>
+{% endblock toc %}
